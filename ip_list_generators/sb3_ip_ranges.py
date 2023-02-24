@@ -14,8 +14,8 @@ TARGET_SERVICE_AND_REGIONS = {
     "CLOUDFRONT": {"GLOBAL"},
     "S3": {"us-east-1", "us-east-2"},
 }
-STINGRAY_ONLY_FILENAME = "stingray-addresses-time.list"
-STINGRAY_AND_AWS_FILENAME = "stingray-addresses-all.list"
+STINGRAY_TIME_FILENAME = "stingray-time.txt"
+STINGRAY_AND_AWS_FILENAME = "stingray.txt"
 
 
 class AWSPrefix(TypedDict):
@@ -75,7 +75,7 @@ def write_files(
     aws_and_stingray_ip_ranges: list[IPv4Network],
 ) -> None:
     """Write the IP ranges to files."""
-    with open(output_path / STINGRAY_ONLY_FILENAME, "w", encoding="UTF-8") as file:
+    with open(output_path / STINGRAY_TIME_FILENAME, "w", encoding="UTF-8") as file:
         file.write("\n".join([str(x) for x in stingray_ip_ranges]))
 
     with open(output_path / STINGRAY_AND_AWS_FILENAME, "w", encoding="UTF-8") as file:
